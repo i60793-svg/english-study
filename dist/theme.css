@@ -133,3 +133,6 @@ details>p{margin-top:var(--space-md)!important}
  .learning-summary{gap:var(--space-lg)}.learning-days{padding-right:var(--space-md)}
  .backup-actions{gap:var(--space-md)}
 }
+
+/* Owl art keeps its natural proportions on every screen. */
+.welcome-art{aspect-ratio:1 / 1}.welcome-art .owl-mascot{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}

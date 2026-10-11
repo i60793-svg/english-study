@@ -1,6 +1,6 @@
 const BASE=new URL('./',self.location.href);
 const HOME=BASE.href;
-const CACHE='english-study-pages-'+encodeURIComponent(BASE.pathname)+'-cbcc559b8b63';
+const CACHE='english-study-pages-'+encodeURIComponent(BASE.pathname)+'-85c24077e7e1';
 const PRECACHE=['./','icon.svg','manifest.json'].map(path=>new URL(path,BASE).href);
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PRECACHE)));
