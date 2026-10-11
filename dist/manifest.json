@@ -1,0 +1,1 @@
+{"name": "英文不散", "short_name": "英文不散", "lang": "zh-Hant", "start_url": "./", "display": "standalone", "background_color": "#f7f3ef", "theme_color": "#f7f3ef", "icons": [{"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}], "scope": "./"}
