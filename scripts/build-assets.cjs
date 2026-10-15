@@ -12,7 +12,7 @@ for(const [word,e] of Object.entries({...rootReview.words,...rootReview.referenc
 }
 const appSource=fs.readFileSync(path.join(dist,'app.js'),'utf8');
 vm.runInContext(appSource.slice(0,appSource.indexOf('const key=')),content);
-const missingExamples=vm.runInContext("words.filter(w=>!Array.isArray(examples[w.word])||examples[w.word].length!==2||!examples[w.word].every(s=>typeof s==='string'&&s.trim())).map(w=>w.word)",content);
+const missingExamples=vm.runInContext("words.filter(w=>!Array.isArray(examples[w.word])||examples[w.word].length!==2||!examples[w.word].every(s=>typeof s==='string')||!examples[w.word][0].trim()).map(w=>w.word)",content);
 if(missingExamples.length)throw Error('Missing bilingual examples: '+missingExamples.join(', '));
 const missingKK=vm.runInContext("[...words,...referenceWords].filter(w=>typeof w.kk!=='string'||!w.kk.trim()).map(w=>w.word)",content);
 if(missingKK.length)throw Error('Missing KK pronunciations: '+missingKK.join(', '));

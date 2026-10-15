@@ -3,7 +3,7 @@ const nodes={app:{innerHTML:''},toast:{style:{}}},store=new Map([['word-roots-te
 const ctx=vm.createContext({Date,Intl,console,setTimeout:()=>{},setInterval:()=>{},navigator:{},localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)},document:{getElementById:id=>nodes[id]??={style:{}},querySelectorAll:()=>[]}});
 for(const f of ['data.js','encouragement.js','vendor/ts-fsrs-5.4.2.js','scheduler.js','test-reset.js','app.js'])vm.runInContext(fs.readFileSync(__dirname+'/../dist/'+f,'utf8'),ctx);
 const run=s=>vm.runInContext(s,ctx),json=s=>JSON.parse(run(`JSON.stringify(${s})`));
-assert.equal(run('words.length'),611);assert.equal(run('new Set(words.map(w=>w.word)).size'),611);
+assert.equal(run('words.length'),6834);assert.equal(run('new Set(words.map(w=>w.word)).size'),6834);
 assert.deepEqual(json("components(words.find(w=>w.word==='prediction')).map(c=>c[0])"),['pre-','dict']);
 assert.deepEqual(json("components(words.find(w=>w.word==='acceptable')).map(c=>[c[0],c[2]])"),[['ac-',null],['cap','cept']]);
 assert.deepEqual(json("components(referenceWords.find(w=>w.word==='floriculture')).map(c=>c[0])"),['flor','cult']);
@@ -22,4 +22,4 @@ assert(nodes.app.innerHTML.includes('contra- ＋ dict'));assert(nodes.app.innerH
 run("active=referenceWords.find(w=>w.word==='floriculture');selectedRoot=null;render()");assert(nodes.app.innerHTML.includes('flor ＋ cult'));assert.equal((nodes.app.innerHTML.match(/data-root=/g)||[]).length,2);
 run("active=words.find(w=>w.word==='happiness');selectedRoot=null;render()");assert(!nodes.app.innerHTML.includes('root-buttons'));assert(!nodes.app.innerHTML.includes('class="parts"'));
 run("view='library';family='dict';render()");assert(nodes.results.innerHTML.includes('dictionary'));assert(nodes.results.innerHTML.includes('predictable'));assert(!nodes.results.innerHTML.includes('occasionally'));
-console.log('Passed: 611 practice identities, curated root-only decomposition, prefix/root variants, multiple roots, hidden unsupported words, 10-word related limit, and root-based filtering.');
+console.log('Passed: 6834 practice identities, curated root-only decomposition, prefix/root variants, multiple roots, hidden unsupported words, 10-word related limit, and root-based filtering.');

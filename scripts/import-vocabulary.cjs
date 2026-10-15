@@ -6,8 +6,8 @@ const entries=batches.flatMap(b=>b.entries);
 const ids=new Set();
 for(const w of entries){
  if(ids.has(w.word))throw Error('Duplicate batch identity: '+w.word);ids.add(w.word);
- if(!w.zh||!w.pos||!w.kk||!Array.isArray(w.example)||w.example.length!==2||!w.example.every(s=>s.trim()))throw Error('Incomplete entry: '+w.word);
- if(!new RegExp('\\b'+w.word+'\\b','i').test(w.example[0]))throw Error('Example must use target word: '+w.word);
+ if(!w.zh||!w.pos||!w.kk||!Array.isArray(w.example)||w.example.length!==2||!w.example[0].trim()||typeof w.example[1]!=='string')throw Error('Incomplete entry: '+w.word);
+ if(!new RegExp('(?:^|[^A-Za-z])'+w.word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?:$|[^A-Za-z])','i').test(w.example[0]))throw Error('Example must use target word: '+w.word);
 }
 const block=(name,body)=>`// BEGIN IMPORTED ${name}\n${body}\n// END IMPORTED ${name}\n`;
 function strip(s,name){return s.replace(new RegExp('// BEGIN IMPORTED '+name+'\\n[\\s\\S]*?// END IMPORTED '+name+'\\n'),'')}

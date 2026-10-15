@@ -1,15 +1,11 @@
-# 英文不散 — GitHub Pages 版
+# 英文不散 — GitHub Pages
 
-611 個英文單字、KK 音標、例句、字根、發音與學習進度。這是目前網站的獨立副本，原網站不受影響。
+6,834 個高中英文詞條，包含新舊版字表、KK、英文例句、字根與 FSRS 學習紀錄。
 
-## 發布
-1. 建立公開 GitHub 儲存庫，建議命名 `english-study`。
-2. 將本資料夾內的所有檔案上傳至儲存庫（不要上傳 ZIP 本身）。
-3. 在 Settings → Pages，選 Deploy from a branch，分支 main，資料夾 /docs，按 Save。
-4. 發布完成後使用 Pages 顯示的網址。
+網站：https://i60793-svg.github.io/english-study/
 
-## 學習紀錄
-紀錄存在使用的瀏覽器。先在原網站匯出備份，再在新網址匯入。兩個網址不會自動同步紀錄，也不會自動同步後續程式更新。
+Pages 設為 main 分支的 /docs。執行 `node scripts/build-assets.cjs` 後，將 dist 內容複製到 docs。
 
-## 修改與重新建置
-需要 Node.js 與 npm。執行 `node scripts/build-assets.cjs`，再將 dist 內容複製到 docs（保留 .nojekyll）。Pages 發布的是 docs 裡的版本。
+完整資料說明見 docs/full-vocabulary.md。所有詞條有英文例句；1,485 個新例句的中文翻譯尚待核對。無已核對資料的新字根不顯示。
+
+學習紀錄存於瀏覽器，與原網站不自動同步，可匯出/匯入備份。更新版本不會重設紀錄。

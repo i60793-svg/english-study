@@ -13,7 +13,7 @@ for(const w of JSON.parse(run('JSON.stringify(words)'))){
  assert(nodes.app.innerHTML.includes('kk-pronunciation'),w.word+' front missing KK');assert(!nodes.app.innerHTML.includes('undefined'),w.word);
  run('browse=true;revealed=true;render()');assert(nodes.app.innerHTML.includes('['+w.kk+']'),w.word+' preview missing KK');
 }
-run("view='library';family='';query='';render()");assert.equal((nodes.results.innerHTML.match(/aria-label="美式 KK 音標"/g)||[]).length,611);
+run("view='library';family='';query='';render()");assert.equal((nodes.results.innerHTML.match(/aria-label="美式 KK 音標"/g)||[]).length,150);
 run("view='study';active=words.find(w=>w.word==='contradict');selectedRoot='dict';revealed=true;browse=true;render()");assert(nodes.app.innerHTML.includes('edict'));assert(nodes.app.innerHTML.includes('[ˋidɪkt]'));
 run("active=words.find(w=>w.word==='import');selectedRoot=null;render()");assert(nodes.app.innerHTML.includes('動詞 [ɪmˋpɔrt]'));assert(nodes.app.innerHTML.includes('名詞 [ˋɪmˏpɔrt]'));
-assert.equal(run('state.logs.length'),0);console.log('Passed: KK coverage for 611 practice words and all related references, KK symbols/stress, both card faces, library, related lists and noun/verb stress variants.');
+assert.equal(run('state.logs.length'),0);console.log('Passed: KK coverage for all practice words and all related references, KK symbols/stress, both card faces, library, related lists and noun/verb stress variants.');

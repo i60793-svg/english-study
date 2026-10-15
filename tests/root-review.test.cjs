@@ -3,7 +3,7 @@ const review=JSON.parse(fs.readFileSync(__dirname+'/../src/roots/review.json','u
 const ctx=vm.createContext({});vm.runInContext(fs.readFileSync(__dirname+'/../dist/data.js','utf8'),ctx);
 const run=s=>vm.runInContext(s,ctx),json=s=>JSON.parse(run(`JSON.stringify(${s})`));
 const parts=w=>json(`components({word:${JSON.stringify(w)}})`),ids=w=>parts(w).map(c=>c[0]);
-assert.equal(Object.keys(review.words).length,611);
+assert.equal(Object.keys(review.words).length,6834);
 for(const w of json('words')){
  const e=review.words[w.word];assert(e&&e.note,'Missing review disposition: '+w.word);
  assert.deepEqual(parts(w.word),e.parts,'Runtime data differs from review: '+w.word);
@@ -26,9 +26,9 @@ for(const w of ['happiness','business','carefully','bell','cap','cloud','improve
 assert.deepEqual(parts('unreviewed'),[]);assert.deepEqual(json("components({word:'unreviewed',refs:['dict']})"),[]);
 assert(run("familyOptions().some(([id])=>id==='-ess')"));assert(run("familyOptions().some(([id])=>id==='sist')"));
 assert(!run("familyOptions().some(([id,r])=>excludedSuffixes.has(r.label))"));
-assert.deepEqual(json("rootMatches('-ess','actress').map(w=>w.word)"),['princess','hostess','lioness']);
+assert.deepEqual(json("rootMatches('-ess','actress').map(w=>w.word)"),['hostess','princess','lioness']);
 assert(!run("rootMatches('port','transport').some(w=>w.word==='airport')"));
 assert(!run("rootMatches('cardi','cardiogram').some(w=>w.word==='card')"));
 assert(Object.values(review.words).some(e=>e.sources.some(s=>s.url.startsWith('https://root.eng.tw/'))));
 assert(!fs.readFileSync(__dirname+'/../dist/data.js','utf8').includes('scribd.com'));
-console.log('Passed: 611 individual review dispositions, verified sources, selected semantic suffixes, contextual prefixes, homograph isolation, no legacy fallback, Chinese supplements and source/runtime consistency.');
+console.log('Passed: 6834 individual review dispositions, verified sources, selected semantic suffixes, contextual prefixes, homograph isolation, no legacy fallback, Chinese supplements and source/runtime consistency.');

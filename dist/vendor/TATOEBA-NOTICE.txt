@@ -1,0 +1,4 @@
+Tatoeba example sentences and linked translations
+https://tatoeba.org/en/downloads
+CC BY 2.0 FR: https://creativecommons.org/licenses/by/2.0/fr/
+Per-sentence original IDs and authors appear in src/vocabulary/batch-002.json and in the app. Chinese text has been converted to Traditional Chinese with Taiwan vocabulary where needed. English-only examples have no invented Chinese translation.
