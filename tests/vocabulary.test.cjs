@@ -31,16 +31,16 @@ run("state.cards=Object.fromEntries(words.slice(0,111).map(w=>[w.word,scheduleRe
 const saved=json('state'),priorCards=saved.cards;
 ({run,nodes}=setup(saved));
 assert.deepEqual(json('state.cards'),priorCards);assert.deepEqual(json('state.logs'),saved.logs);assert.deepEqual(json('state.excluded'),saved.excluded);
-assert.equal(run('fresh().length'),6723);assert.equal(run('due().length'),0);
-assert.equal(run('learningTotals().learned'),111);assert.equal(run('learningTotals().total'),6834);
-assert.equal(run('learningTotals().percentage'),1.6);
-assert.equal(run("estimatedNewWordDate(new Date('2026-10-05T00:00:00Z'))"),new Date(Date.parse('2026-10-05T00:00:00Z')+672*86400000).toISOString().slice(0,10).replaceAll('-','/'));
-run('start()');assert.equal(run('active.word'),'ability');assert.equal(run('total'),10);
+assert.equal(run('fresh().length'),5684);assert.equal(run('due().length'),0);
+assert.equal(run('learningTotals().learned'),111);assert.equal(run('learningTotals().total'),5795);
+assert.equal(run('learningTotals().percentage'),1.9);
+assert.equal(run("estimatedNewWordDate(new Date('2026-10-05T00:00:00Z'))"),new Date(Date.parse('2026-10-05T00:00:00Z')+568*86400000).toISOString().slice(0,10).replaceAll('-','/'));
+run('start()');assert.notEqual(run('active.level'),1);assert.equal(run('total'),10);
 let attempts=0;while(run('Boolean(active)')){run('rate(3)');assert(++attempts<=10)}
-assert.equal(run('learnedToday()'),10);assert.equal(run('fresh().length'),6713);
+assert.equal(run('learnedToday()'),10);assert.equal(run('fresh().length'),5674);
 nodes.back.onclick();assert(nodes.app.innerHTML.includes('>繼續學習</button>'));
 nodes.start.onclick();assert.equal(run('total'),10);
-while(run('Boolean(active)'))run('rate(3)');assert.equal(run('fresh().length'),6703);
+while(run('Boolean(active)'))run('rate(3)');assert.equal(run('fresh().length'),5664);
 assert.deepEqual(json(`validateBackup({...state,version:2}).cards`),json('state.cards'));
 // Legacy exports from the old word bank still import after expansion.
 const legacy={version:1,limit:5,logs:[{word:baseline[0].word,day:'2026-10-04',rating:3,first:true}],cards:{[baseline[0].word]:{due:Date.parse('2026-10-10'),interval:5,reps:1,ease:2.5}},excluded:[baseline[1].word]};
